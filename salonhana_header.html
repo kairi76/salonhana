@@ -1,0 +1,352 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    header {
+        border-bottom: 1px solid #ddd;
+        max-width: 1500px;
+        margin: 0 auto;
+        min-width: 800px;
+    }
+
+    .top-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .top-header .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .logo img {
+        width: auto;
+        height: 40px;
+    }
+
+
+    .top-header .right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .top-header .right a {
+        padding: 5px 15px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #adc4d9;
+        border-radius: 50px;
+        transition: background-color 0.3s;
+    }
+
+    .top-header .right a:hover {
+        background-color: #6a85a1;
+    }
+
+    .search-bar {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-right: 20px;
+        /* 可调节的右边距 */
+    }
+
+    #search-input {
+        padding: 5px;
+        width: 200px;
+    }
+
+    #search-btn {
+        padding: 5px 10px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .cart-icon {
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .nav-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        background-color: #d8e3f1;
+    }
+
+    .nav-bar a {
+        text-decoration: none;
+        color: #333;
+        padding: 10px 15px;
+        display: block;
+        text-align: center;
+    }
+
+    .nav-bar a:hover {
+        background-color: #ffffff;
+        border-radius: 55px;
+    }
+
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        min-width: 200px;
+        z-index: 999;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .dropdown-menu a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown-menu a:last-child {
+        border-bottom: none;
+    }
+
+
+
+    .banner-carousel {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        max-width: 1000px;
+        margin: 20px auto;
+    }
+
+    .banner-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .banner {
+        flex: 0 0 300px;
+        height: 300px;
+        margin-right: 10px;
+        background-color: #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .banner:last-child {
+        margin-right: 0;
+    }
+
+    .banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel-controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
+
+    .carousel-controls button {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .carousel-dots span {
+        width: 10px;
+        height: 10px;
+        background-color: #ddd;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .carousel-dots .active {
+        background-color: #333;
+    }
+</style>
+
+<body>
+    <header>
+        <!-- Top Header -->
+        <div class="top-header">
+            <div class="logo">
+                <img src="https://image.rakuten.co.jp/salonhana/cabinet/design/logo-960x160-white2.jpg" alt="Shop Logo">
+            </div>
+            <div class="right">
+                <a href="https://www.rakuten.co.jp/salonhana/info.html?l-id=shoptop_shopmenu_company">会社概要</a>
+                <a href="https://www.rakuten.co.jp/?l2-id=shop_header_logo">楽天市场</a>
+                <div class="search-bar">
+                    <input type="text" placeholder="商品名を入力">
+                    <button id="search-btn">检索</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <a href="https://www.rakuten.co.jp/salonhana/">トップ</a>
+            <div class="dropdown">
+                <a href="#">カテゴリー</a>
+                <div class="dropdown-menu">
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000002/?l-id=shoptop_shopmenu_shopcategory_1">モバイルバッテリー</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000012/?l-id=shoptop_shopmenu_shopcategory_2">充電器</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000014/?l-id=shoptop_shopmenu_shopcategory_3">防寒グッズ</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000009/?l-id=shoptop_shopmenu_shopcategory_4">スマートウォッチ</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000004/?l-id=shoptop_shopmenu_shopcategory_5">下着・インナー</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000008/?l-id=shoptop_shopmenu_shopcategory_6">トラベル用品</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000006/?l-id=shoptop_shopmenu_shopcategory_7">イヤホン</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000005/?l-id=shoptop_shopmenu_shopcategory_8">スピーカー</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000007/?l-id=shoptop_shopmenu_shopcategory_9">扇風機</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000010/?l-id=shoptop_shopmenu_shopcategory_10">キッチン用品</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000003/?l-id=shoptop_shopmenu_shopcategory_12">スマホ・PCアクセサリー</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000003/?l-id=shoptop_shopmenu_shopcategory_12">ひんやりグッズ</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000013/?l-id=shoptop_shopmenu_shopcategory_13">お得なセット商品</a>
+                    <a
+                        href="https://item.rakuten.co.jp/salonhana/c/0000000001/?l-id=shoptop_shopmenu_shopcategory_14">その他</a>
+                </div>
+            </div>
+            <a href="https://www.rakuten.co.jp/salonhana/info.html?l-id=shoptop_shopmenu_company">お支払い・配送料</a>
+            <a
+                href="https://basket.step.rakuten.co.jp/rms/mall/bs/cartempty/;jsessionid=AEE4619E16B2016005880239959549A5">お買い物かご</a>
+            <a
+                href="https://login.account.rakuten.com/session/upgrade?token=@St.ott-v2.4H-LsWl_koaVAlFY8jhr_9wMG4_3EJcV.Y4UVfU4aVX2xPVs_qY5gocPezGr2eMlb_t_gnzBQgCZeAbSO1MJHrSoqAHtn9_n9UfRaX1e68dvkNeMmuN3N5P8CoCZBmQPmzsqxTXb8wXj20PPC30JNJlFvgVvRBmDdJB7KLGRh1cdSL7AFshV9Ak6e0TWf8ngXtNdbxYzQ1oHVshnPieePqjgqhmiaYmXKH3RqpfCxb_BZazEr_0J-UBcscYqI4qb1LjXKo6VeZtXAuuGspo4SegCCVqgSlJr5IgVD1KtdQrhCRZ5hz33ypTT39qH5ts1AHYQTANsXcOZi_GLwsg3jtnRraI_JajHjGOX8iXyzsHGx4lE0Ofa3D-pOuAvzOZqoIa27XNnE3iN0hxUVpBZAQdDh0szkpHh1iBnzmSE8jWODCVJLvI6EVvUsg27P6EIKTj1BCT9QZN-BfZghjJEth1lPtcrypnXRvnjdgABcD46_FDlEojM8OO4m0n8dNhAe1VtvLVEXmOfalEf4vfhL9cfTIIo952U-hoSUebQZEGH7nSe6UvOc-0V2FVNvno3MFj6iNZVTf4o5wn0WyRMjVXDRGEwemyHmxddre9AXVexKDWgdQYYtkefthfDyCLOd_8z9ArDN45JXhrIzvmuvtm-1gvfcB5vH_XaIkVFd7Rgd690RBdW_E2g9wwUmazYwM95w8-zXBy_Qu8DSKoxtCkimTXFw6y32NHsM6tltOpJq7Bar5bFr6HF5Ys1iVQGpzQurECd79a_22GPDvxGnn135PP57bb9OH4uo9BP2sqy8WUjSy0Rt1kiLwfxVoXBxXIfHQTpaut8KWvFB-ggfQM-UxPpU_2iy6ocp4pZdQNknzDguclqqG1pdfI8ZvJDtGa-jEA5RxC_yizs0ESVYjNqpbQ44z47NKl4JNd0WzorYQd2R9sqoT2u-mXJDT_G6OablPpRwSyT7sReIdZGZVC0OaJ2q7ecifV-jAdHertLeDC6F4o8NCnyAHS3QRuVBkHzpLo63DyzgdY5_Cc9eafJ7q4_hlZrpWySdzCcnWIcNbpIHjkv_W5o_6XDV9BMwoEYZqlMlg-67Pfi6hmnS_uO4Ge6Um7aZKYC0FFmvghX-uvIB5mKxB_vZUy2ukMP044hYqIjTKnxihwAZLo2N5penF0_Qp92-XlYRxf1gETiayQ612HFI02MXamzJtUHbytjrQEed2tZb1nbqOL50zWQ-QiOFLc5Mc6Rzvc2bjhC6zgX8AoUv1TVsHfW1VA2TiIOEdZVthDG_XYS0kh0iQjj9bSBLp18FJwVv8qVBHknxlamdBh9nfOXYIgOY_tz7C0cLIYf_2A5ICRjgiG7dd8yeZ3CuXQl9sK-EBIsBgR8ktEPZr5LZx5EyYhiPXjLRn1qsArlpAthoNvuT_xYoOUgRN6QPUI3VWGCtQTiAhFK8zviqiEiLUM8oMg33v0i9FaxldlfCtrsXI8kV35oDXdDvQUvNf_WbJaxKU_8rb6MIiPdzrGi1sCQYd8m_Q_RLkkITNlw3vCAcAARFBUw7vgFaJKeE_FUqSeYwybcoUbnmwIN44pa8xKjCqYPyPWBl_27aGtwbSK6_fr0z1BiQI1US2Dx0sYrtSfSFujzsm-kqDvueiNInnZ44Ft6J2bH6itualcAc5w1cbge8MIYq_PxLT9yLEWQwZGhEBM6fK72vcGKe4Fj0I3HwchlxpzRnPy_yPi9qHjMy8rnLudZt0LnzwA0cKIMTS1ABvgwAS9OmCL3UbgglNe-aGTYx2gbngFufcEX7VM5xAu-6T-Y6b-Jbq11xHbuKgH_5EdCYMa4XpRTIgzGKVA8ooqMaXGDkmVqYj8CB1YYeoRD3NEysGStEsaoagSFIh6qocJdHyN0Q83duIANYIt0GT3Wj-B5DgL97Ei7oY8ltBKVyyhsgHkML5XPoZbWsH0i53NmFwjUUNposfMTxC-7ht1lt4AYFfcbXzgrOwUbkFcAVaAw8QbVXF4ZknpY69h6aE4sngkHDa1LK_oaub5hVrOko2KuX13LIHSolwRiAyGgVqrxCcfTqSx_WOG3hpJcQQ15n6JNgX5ExUMvUK-Y4dhkGxksurMOCdTZ73JABvrDmG2in9SuHsiWAVHr_8lgtvBbHGXOsMJuMbDcIGNjkTtYlxA2pvIk2mkdbf8m9ph72PKkI-oHOqGpN-vg5-9KXAnOhzPWdWsuwf2_I4GhMUw#/session_upgrade">お問い合わせ</a>
+        </nav>
+    </header>
+
+    <!-- Banner Carousel -->
+    <div class="banner-carousel">
+        <div class="banner-wrapper">
+            <div class="banner">
+                <a href="https://soko.rms.rakuten.co.jp/salonhana/suitcase2-ss/">
+                    <img src="https://image.rakuten.co.jp/salonhana/cabinet/design/banner_7.jpg" alt="Banner 1">
+                </a>
+            </div>
+            <div class="banner">
+                <a href="https://item.rakuten.co.jp/salonhana/battery12/">
+                    <img src="https://image.rakuten.co.jp/salonhana/cabinet/design/banner_6.jpg" alt="Banner 2">
+                </a>
+            </div>
+            <div class="banner">
+                <a href="https://item.rakuten.co.jp/salonhana/smartwatch-qx7/">
+                    <img src="https://image.rakuten.co.jp/salonhana/cabinet/design/banner_5.jpg" alt="Banner 3">
+                </a>
+            </div>
+            <div class="banner">
+                <a href="https://item.rakuten.co.jp/salonhana/battery7/">
+                    <img src="https://image.rakuten.co.jp/salonhana/cabinet/design/banner_4.jpg" alt="Banner 4">
+                </a>
+            </div>
+            <div class="banner">
+                <a href="https://item.rakuten.co.jp/salonhana/sleepingbag1/">
+                    <img src="https://image.rakuten.co.jp/salonhana/cabinet/design/banner_3.jpg" alt="Banner 5">
+                </a>
+            </div>
+            <div class="banner">
+                <a href="https://item.rakuten.co.jp/salonhana/bar5/">
+                    <img src="https://image.rakuten.co.jp/salonhana/cabinet/design/banner_2_1.jpg" alt="Banner 6">
+                </a>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button id="prev">◀</button>
+            <button id="next">▶</button>
+        </div>
+        <div class="carousel-dots">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+
+
+    <script>
+        const wrapper = document.querySelector('.banner-wrapper');
+        const dots = document.querySelectorAll('.carousel-dots span');
+        const banners = document.querySelectorAll('.banner');
+        const bannerWidth = 310; // 每个banner宽度 (含间距)
+        const bannersToShow = 3; // 显示几个banner
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            wrapper.style.transform = `translateX(-${currentIndex * bannerWidth}px)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : banners.length - bannersToShow;
+            updateCarousel();
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex < banners.length - bannersToShow) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+    </script>
